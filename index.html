@@ -10,24 +10,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
     :root {
-      --blue-deep: #0a2e4e;
-      --blue-main: #1b4a6b;
-      --blue-soft: #2b6a8f;
-      --blue-light: #d4e7f5;
-      --lime: #a3e635;
-      --lime-dark: #84cc16;
-      --lime-glow: rgba(163, 230, 53, 0.25);
-      --white: #ffffff;
-      --off-white: #f5f9ff;
-      --gray-100: #eef4fa;
-      --gray-200: #dae5ef;
-      --gray-500: #5f7d9a;
-      --gray-700: #2c4a62;
-      --shadow-sm: 0 4px 12px rgba(10, 46, 78, 0.06);
-      --shadow-md: 0 12px 28px rgba(10, 46, 78, 0.08);
-      --shadow-lg: 0 24px 48px rgba(10, 46, 78, 0.12);
-      --radius-card: 24px;
-      --radius-btn: 40px;
+      --blue-deep: #0a2e4e; --blue-main: #1b4a6b; --blue-soft: #2b6a8f; --blue-light: #d4e7f5;
+      --lime: #a3e635; --lime-dark: #84cc16; --lime-glow: rgba(163, 230, 53, 0.25);
+      --white: #ffffff; --off-white: #f5f9ff; --gray-100: #eef4fa; --gray-200: #dae5ef;
+      --gray-500: #5f7d9a; --gray-700: #2c4a62;
+      --shadow-sm: 0 4px 12px rgba(10, 46, 78, 0.06); --shadow-md: 0 12px 28px rgba(10, 46, 78, 0.08);
+      --shadow-lg: 0 24px 48px rgba(10, 46, 78, 0.12); --radius-card: 24px; --radius-btn: 40px;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -52,6 +40,12 @@
     .logged-in-info.active { display: flex; }
     .logged-out.active { display: flex; }
     .logged-out { display: none; }
+
+    /* Mobile hamburger */
+    .hamburger { display: none; background: var(--gray-100); border: 1px solid var(--gray-200); width: 44px; height: 44px; border-radius: 12px; font-size: 1.3rem; color: var(--blue-deep); cursor: pointer; }
+    .mobile-menu { display: none; flex-direction: column; gap: 10px; padding: 16px 0 4px; width: 100%; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu .btn, .mobile-menu .user-badge { width: 100%; justify-content: center; }
 
     /* ===== HERO ===== */
     .hero { position: relative; min-height: 90vh; display: flex; align-items: center; justify-content: center; text-align: center; color: white; overflow: hidden; padding: 60px 0; }
@@ -102,6 +96,7 @@
     .price { font-size: 1.15rem; font-weight: 800; color: var(--blue-main); white-space: nowrap; background: var(--blue-light); padding: 2px 12px; border-radius: 30px; }
     .location { display: flex; align-items: center; gap: 6px; font-size: 0.9rem; color: var(--gray-500); margin-bottom: 12px; }
     .coords { background: var(--gray-100); padding: 6px 14px; border-radius: 30px; font-size: 0.8rem; font-weight: 500; color: var(--blue-deep); margin-bottom: 14px; display: inline-block; align-self: flex-start; letter-spacing: 0.2px; }
+    .card-map { width: 100%; height: 150px; border: 0; border-radius: 14px; margin-bottom: 14px; background: var(--gray-100); }
     .contact-info { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--gray-200); display: flex; flex-wrap: wrap; gap: 10px 16px; font-size: 0.85rem; }
     .contact-info a, .contact-info span { display: flex; align-items: center; gap: 6px; text-decoration: none; color: var(--blue-deep); font-weight: 500; transition: color 0.15s; }
     .contact-info a:hover { color: var(--lime-dark); }
@@ -123,8 +118,8 @@
     .close-modal:hover { background: var(--gray-200); }
     .form-group { margin-bottom: 18px; }
     .form-group label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; color: var(--blue-deep); }
-    .form-group input, .form-group textarea { width: 100%; padding: 14px 16px; border-radius: 16px; border: 1px solid var(--gray-200); font-family: inherit; font-size: 0.95rem; background: var(--gray-100); outline: none; transition: border 0.15s, background 0.15s; color: var(--blue-deep); }
-    .form-group input:focus, .form-group textarea:focus { border-color: var(--lime-dark); background: var(--white); box-shadow: 0 0 0 3px var(--lime-glow); }
+    .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 14px 16px; border-radius: 16px; border: 1px solid var(--gray-200); font-family: inherit; font-size: 0.95rem; background: var(--gray-100); outline: none; transition: border 0.15s, background 0.15s; color: var(--blue-deep); }
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--lime-dark); background: var(--white); box-shadow: 0 0 0 3px var(--lime-glow); }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .image-hint { font-size: 0.8rem; color: var(--gray-500); margin-top: 6px; }
     .btn-block { width: 100%; justify-content: center; padding: 16px; font-size: 1rem; border-radius: 30px; }
@@ -147,20 +142,32 @@
     .detail-row .value { color: var(--gray-700); flex: 1; word-break: break-word; }
     .detail-row a { color: var(--blue-main); text-decoration: none; }
     .detail-row a:hover { text-decoration: underline; }
+    .detail-map { width: 100%; height: 240px; border: 0; border-radius: 16px; margin-top: 16px; }
     .detail-close { position: absolute; top: 14px; right: 14px; width: 42px; height: 42px; border-radius: 50%; border: none; cursor: pointer; background: rgba(255,255,255,0.92); color: var(--blue-deep); font-size: 1.5rem; line-height: 1; z-index: 5; box-shadow: var(--shadow-sm); }
     .detail-close:hover { background: var(--white); }
 
-    /* ===== TOAST ===== */
+    /* ===== FOOTER ===== */
+    .site-footer { background: var(--blue-deep); color: white; padding: 48px 0 24px; margin-top: 40px; }
+    .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
+    .footer-info h3 { font-size: 1.6rem; font-weight: 800; margin-bottom: 12px; display: flex; align-items: center; gap: 10px; }
+    .footer-info h3 i { color: var(--lime); }
+    .footer-info p { color: rgba(255,255,255,0.8); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; font-size: 0.95rem; }
+    .footer-info p i { color: var(--lime); width: 18px; }
+    .footer-map { width: 100%; height: 220px; border: 0; border-radius: 18px; }
+    .footer-bottom { margin-top: 32px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.15); text-align: center; font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+
+    /* ===== TOAST / LOADER ===== */
     .toast { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); background: var(--blue-deep); color: white; padding: 14px 32px; border-radius: var(--radius-btn); font-weight: 500; box-shadow: var(--shadow-lg); z-index: 2000; opacity: 0; transition: opacity 0.25s; pointer-events: none; }
     .toast.show { opacity: 1; }
     .toast.error { background: #b91c1c; }
-
-    /* ===== LOADER ===== */
     .loading-spinner { text-align: center; padding: 60px; grid-column: 1 / -1; }
     .spinner { width: 48px; height: 48px; border: 4px solid var(--gray-200); border-top: 4px solid var(--lime-dark); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 16px; }
     @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
     @media (max-width: 768px) {
+      .nav-inner { flex-wrap: wrap; }
+      .auth-buttons { display: none; }
+      .hamburger { display: inline-flex; align-items: center; justify-content: center; }
       .search-section { flex-direction: column; align-items: stretch; margin-top: -20px; }
       .filter-group { flex-wrap: wrap; }
       .form-row { grid-template-columns: 1fr; }
@@ -168,10 +175,10 @@
       .hero-stats { gap: 28px; }
       .hero-actions .btn { padding: 14px 24px; font-size: 0.95rem; }
       .listing-header { flex-direction: column; align-items: flex-start; gap: 8px; }
+      .footer-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 480px) {
-      .nav-inner { justify-content: center; }
-      .auth-buttons { justify-content: center; }
+      .nav-inner { justify-content: space-between; }
     }
   </style>
 </head>
@@ -180,7 +187,8 @@
 <nav class="navbar">
   <div class="container nav-inner">
     <div class="logo"><i class="fas fa-mountain"></i> MineLink</div>
-    <div class="auth-buttons">
+    <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><i class="fas fa-bars"></i></button>
+    <div class="auth-buttons" id="desktopAuth">
       <div class="logged-out active" id="loggedOutButtons">
         <button class="btn btn-outline" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Log in</button>
         <button class="btn btn-primary" id="registerBtn"><i class="fas fa-user-plus"></i> Sign up</button>
@@ -189,7 +197,20 @@
         <span class="user-badge"><i class="fas fa-user-circle"></i> <span id="userEmailDisplay">miner@example.com</span></span>
         <button class="btn btn-outline" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
       </div>
+      <a href="history.html" class="btn btn-outline"><i class="fas fa-book-open"></i> Mining History</a>
       <button class="btn btn-lime" id="addMineBtn"><i class="fas fa-plus-circle"></i> List a mine</button>
+    </div>
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="logged-out active" id="loggedOutButtonsMobile">
+        <button class="btn btn-outline" id="loginBtnMobile"><i class="fas fa-sign-in-alt"></i> Log in</button>
+        <button class="btn btn-primary" id="registerBtnMobile"><i class="fas fa-user-plus"></i> Sign up</button>
+      </div>
+      <div class="logged-in-info" id="loggedInInfoMobile">
+        <span class="user-badge"><i class="fas fa-user-circle"></i> <span id="userEmailDisplayMobile">miner@example.com</span></span>
+        <button class="btn btn-outline" id="logoutBtnMobile"><i class="fas fa-sign-out-alt"></i> Logout</button>
+      </div>
+      <a href="history.html" class="btn btn-outline"><i class="fas fa-book-open"></i> Mining History</a>
+      <button class="btn btn-lime" id="addMineBtnMobile"><i class="fas fa-plus-circle"></i> List a mine</button>
     </div>
   </div>
 </nav>
@@ -209,6 +230,7 @@
     <div class="hero-actions">
       <a href="#listings" class="btn btn-lime"><i class="fas fa-search"></i> Explore mines</a>
       <button class="btn btn-outline" id="heroListBtn" style="background:rgba(255,255,255,0.12);color:white;border-color:rgba(255,255,255,0.3);"><i class="fas fa-plus"></i> List your mine</button>
+      <a href="history.html" class="btn btn-outline" style="background:rgba(255,255,255,0.12);color:white;border-color:rgba(255,255,255,0.3);"><i class="fas fa-book-open"></i> Mining history</a>
     </div>
     <div class="hero-stats">
       <div class="hero-stat"><h3 id="statMines">0</h3><p>Mines listed</p></div>
@@ -291,7 +313,7 @@
       <div class="form-row">
         <div class="form-group">
           <label>Mineral type *</label>
-          <select id="mineMineral" required style="width:100%;padding:14px 16px;border-radius:16px;border:1px solid var(--gray-200);font-family:inherit;font-size:0.95rem;background:var(--gray-100);outline:none;color:var(--blue-deep);">
+          <select id="mineMineral" required>
             <option value="">Select mineral</option>
             <option value="Gold">Gold</option>
             <option value="Copper">Copper</option>
@@ -326,6 +348,27 @@
     <div class="detail-body" id="detailBody"></div>
   </div>
 </div>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-info">
+        <h3><i class="fas fa-mountain"></i> MineLink</h3>
+        <p><i class="fas fa-map-marker-alt"></i> Kwekwe, Zimbabwe</p>
+        <p><i class="fas fa-phone"></i> <a href="tel:+2639083476" style="color:inherit;text-decoration:none;">+263 908 3476</a></p>
+        <p><i class="fas fa-envelope"></i> <a href="mailto:info@minelink.co.zw" style="color:inherit;text-decoration:none;">info@minelink.co.zw</a></p>
+        <p style="margin-top:16px;"><a href="history.html" class="btn btn-lime"><i class="fas fa-book-open"></i> Read Zimbabwe mining history</a></p>
+      </div>
+      <div>
+        <iframe class="footer-map" title="Map of Kwekwe, Zimbabwe"
+          src="https://www.openstreetmap.org/export/embed.html?bbox=29.75%2C-18.95%2C29.85%2C-18.88&amp;layer=mapnik&amp;marker=-18.9167%2C29.8000"
+          loading="lazy"></iframe>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; <span id="footerYear"></span> MineLink · Kwekwe, Zimbabwe · All rights reserved.</div>
+  </div>
+</footer>
 
 <div class="toast" id="toast"></div>
 
@@ -381,6 +424,9 @@
   const loggedOutButtons = document.getElementById('loggedOutButtons');
   const loggedInInfo = document.getElementById('loggedInInfo');
   const userEmailDisplay = document.getElementById('userEmailDisplay');
+  const loggedOutButtonsMobile = document.getElementById('loggedOutButtonsMobile');
+  const loggedInInfoMobile = document.getElementById('loggedInInfoMobile');
+  const userEmailDisplayMobile = document.getElementById('userEmailDisplayMobile');
 
   const loginModal = document.getElementById('loginModal');
   const registerModal = document.getElementById('registerModal');
@@ -395,10 +441,19 @@
     { id:'demo-6', name:'Uranium Basin Site', location:'Swakopmund, Namibia', price:3500000, mineral:'Antimony', hectares:200, coords:'-22.6833, 14.5333', phone:'+264 81 678 9012', email:'uraniumbasin@minelink.demo', whatsapp:'https://wa.me/264816789012', images:['https://images.unsplash.com/photo-1624365168968-f283d506c6b6?w=800&q=80','https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&q=80','https://images.unsplash.com/photo-1605000797499-95a51c5269ae?w=800&q=80'], description:'Uranium exploration project near coastal infrastructure.' }
   ];
 
+  // Mobile menu toggle
+  document.getElementById('hamburgerBtn').addEventListener('click', () => {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  });
+  function closeMobileMenu() { document.getElementById('mobileMenu').classList.remove('open'); }
+
   document.getElementById('loginBtn').addEventListener('click', () => loginModal.classList.add('open'));
   document.getElementById('registerBtn').addEventListener('click', () => registerModal.classList.add('open'));
   document.getElementById('addMineBtn').addEventListener('click', openAddMine);
   document.getElementById('heroListBtn').addEventListener('click', openAddMine);
+  document.getElementById('loginBtnMobile').addEventListener('click', () => { loginModal.classList.add('open'); closeMobileMenu(); });
+  document.getElementById('registerBtnMobile').addEventListener('click', () => { registerModal.classList.add('open'); closeMobileMenu(); });
+  document.getElementById('addMineBtnMobile').addEventListener('click', () => { openAddMine(); closeMobileMenu(); });
 
   function openAddMine() {
     if (!currentUser) { showToast('Please log in to list a mine', 'error'); loginModal.classList.add('open'); return; }
@@ -407,6 +462,9 @@
 
   document.getElementById('logoutBtn').addEventListener('click', () => {
     currentUser = null; updateAuthUI(); showToast('Logged out');
+  });
+  document.getElementById('logoutBtnMobile').addEventListener('click', () => {
+    currentUser = null; updateAuthUI(); showToast('Logged out'); closeMobileMenu();
   });
 
   document.getElementById('clearFiltersBtn').addEventListener('click', () => {
@@ -469,9 +527,14 @@
       loggedOutButtons.classList.remove('active');
       loggedInInfo.classList.add('active');
       userEmailDisplay.textContent = currentUser.email;
+      loggedOutButtonsMobile.classList.remove('active');
+      loggedInInfoMobile.classList.add('active');
+      userEmailDisplayMobile.textContent = currentUser.email;
     } else {
       loggedOutButtons.classList.add('active');
       loggedInInfo.classList.remove('active');
+      loggedOutButtonsMobile.classList.add('active');
+      loggedInInfoMobile.classList.remove('active');
     }
   }
 
@@ -573,6 +636,23 @@
   priceFilter.addEventListener('change', applyFilters);
   hectareFilter.addEventListener('change', applyFilters);
 
+  // Build an OSM embed URL from coords ("lat, long") or fall back to a text search
+  function mapEmbedUrl(mine, height) {
+    var coords = String(mine.coords || '').trim();
+    var m = coords.match(/(-?\d+(?:\.\d+)?)\s*[, ]\s*(-?\d+(?:\.\d+)?)/);
+    if (m) {
+      var lat = parseFloat(m[1]);
+      var lon = parseFloat(m[2]);
+      if (!isNaN(lat) && !isNaN(lon) && lat >= -90 && lat <= 90 && lon >= -180 && lon <= 180) {
+        var d = 0.05;
+        var bbox = (lon - d) + '%2C' + (lat - d) + '%2C' + (lon + d) + '%2C' + (lat + d);
+        return 'https://www.openstreetmap.org/export/embed.html?bbox=' + bbox + '&layer=mapnik&marker=' + lat + '%2C' + lon;
+      }
+    }
+    var q = encodeURIComponent(mine.location || mine.name || 'Zimbabwe');
+    return 'https://www.openstreetmap.org/export/embed.html?layer=mapnik&q=' + q;
+  }
+
   function renderMines() {
     if (!filteredMines.length) {
       minesGrid.innerHTML = `<div class="empty-state"><i class="fas fa-mountain"></i><h3 style="margin-bottom:8px;">No mines found</h3><p style="color:var(--gray-500);">Try adjusting your search or filters.</p></div>`;
@@ -586,6 +666,7 @@
       const imageCount = mine.images ? mine.images.length : 0;
       const priceDisplay = typeof mine.price === 'number' ? `$${mine.price.toLocaleString()}` : mine.price;
       const whatsappLink = mine.whatsapp || (mine.phone ? `https://wa.me/${(mine.phone || '').replace(/[^0-9]/g, '')}` : '');
+      const mapUrl = mapEmbedUrl(mine);
       return `
         <div class="mine-card" style="animation-delay:${idx * 0.05}s" data-id="${escapeHtml(String(mine.id))}">
           <div class="card-image" style="cursor:pointer;" data-mine-id="${escapeHtml(String(mine.id))}" title="Click to view details">
@@ -599,6 +680,7 @@
             ${mine.mineral ? `<div class="coords"><i class="fas fa-gem"></i> ${escapeHtml(mine.mineral)}</div>` : ''}
             ${mine.hectares ? `<div class="coords"><i class="fas fa-ruler-combined"></i> ${escapeHtml(String(mine.hectares))} ha</div>` : ''}
             ${mine.coords ? `<div class="coords"><i class="fas fa-location-dot"></i> ${escapeHtml(mine.coords)}</div>` : ''}
+            <iframe class="card-map" title="Map location" src="${mapUrl}" loading="lazy"></iframe>
             <div class="contact-info">
               <a href="tel:${escapeHtml(mine.phone)}"><i class="fas fa-phone"></i> ${escapeHtml(mine.phone || '—')}</a>
               <a href="mailto:${escapeHtml(mine.email)}"><i class="fas fa-envelope"></i> ${escapeHtml(mine.email || '—')}</a>
@@ -699,6 +781,7 @@
     if (mine.seller) html += '<div class="detail-row"><i class="fas fa-user"></i><span class="label">Seller</span><span class="value">' + escapeHtml(mine.seller) + '</span></div>';
     if (mine.timestamp) html += '<div class="detail-row"><i class="fas fa-clock"></i><span class="label">Listed</span><span class="value">' + escapeHtml(String(mine.timestamp)) + '</span></div>';
     html += '<div class="detail-row"><i class="fas fa-image"></i><span class="label">Photos</span><span class="value">' + imgs.length + '</span></div>';
+    html += '<iframe class="detail-map" title="Mine location map" loading="lazy" src="' + mapEmbedUrl(mine) + '"></iframe>';
     detailBody.innerHTML = html;
     detailModal.classList.add('open');
     detailModal.scrollTop = 0;
@@ -727,6 +810,7 @@
     });
   }
 
+  document.getElementById('footerYear').textContent = new Date().getFullYear();
   (function init() { updateAuthUI(); fetchMines(); })();
 </script>
 </body>
