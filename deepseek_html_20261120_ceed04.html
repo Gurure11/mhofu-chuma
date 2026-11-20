@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MineLink · Zimbabwe Mining History</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    :root {
+      --blue-deep: #0a2e4e; --blue-main: #1b4a6b; --blue-light: #d4e7f5;
+      --lime: #a3e635; --lime-dark: #84cc16;
+      --white: #ffffff; --off-white: #f5f9ff; --gray-100: #eef4fa; --gray-200: #dae5ef;
+      --gray-500: #5f7d9a; --gray-700: #2c4a62;
+      --shadow-md: 0 12px 28px rgba(10, 46, 78, 0.08);
+      --shadow-lg: 0 24px 48px rgba(10, 46, 78, 0.12);
+      --radius-card: 24px; --radius-btn: 40px;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Inter', sans-serif; background: var(--off-white); color: var(--blue-deep); line-height: 1.6; }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    .topbar { background: var(--blue-deep); color: white; padding: 16px 0; }
+    .topbar .container { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .topbar .logo { font-size: 1.5rem; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+    .topbar .logo i { color: var(--lime); }
+    .btn { border: none; padding: 10px 22px; border-radius: var(--radius-btn); font-weight: 600; font-size: 0.95rem; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; font-family: inherit; text-decoration: none; transition: all 0.2s; }
+    .btn-lime { background: var(--lime); color: var(--blue-deep); border: 1px solid var(--lime); font-weight: 700; }
+    .btn-lime:hover { background: var(--lime-dark); border-color: var(--lime-dark); color: white; }
+
+    .page-hero { background: linear-gradient(135deg, var(--blue-deep), var(--blue-main)); color: white; padding: 64px 0; text-align: center; }
+    .page-hero h1 { font-size: clamp(2rem, 5vw, 3rem); font-weight: 800; letter-spacing: -0.02em; margin-bottom: 12px; }
+    .page-hero h1 span { color: var(--lime); }
+    .page-hero p { max-width: 700px; margin: 0 auto; color: rgba(255,255,255,0.85); }
+
+    .intro { background: var(--white); border-radius: var(--radius-card); padding: 28px 30px; margin: -32px auto 40px; max-width: 1000px; box-shadow: var(--shadow-lg); position: relative; z-index: 2; }
+    .intro p { color: var(--gray-700); margin-bottom: 12px; }
+    .intro p:last-child { margin-bottom: 0; }
+
+    .town { background: var(--white); border-radius: var(--radius-card); overflow: hidden; box-shadow: var(--shadow-md); margin-bottom: 36px; border: 1px solid var(--gray-200); }
+    .town-img { width: 100%; height: 260px; object-fit: cover; display: block; background: var(--blue-light); }
+    .town-body { padding: 26px 30px 30px; }
+    .town-body h2 { font-size: 1.7rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; }
+    .town-body h2 i { color: var(--lime-dark); margin-right: 8px; }
+    .town-tag { display: inline-block; background: var(--blue-light); color: var(--blue-deep); font-size: 0.8rem; font-weight: 600; padding: 4px 14px; border-radius: 30px; margin-bottom: 16px; }
+    .town-body p { color: var(--gray-700); margin-bottom: 14px; }
+    .town-map { width: 100%; height: 260px; border: 0; border-radius: 16px; margin-top: 8px; }
+
+    .history-footer { background: var(--blue-deep); color: white; padding: 36px 0; text-align: center; margin-top: 40px; }
+    .history-footer p { color: rgba(255,255,255,0.8); margin-bottom: 8px; }
+    .history-footer a { color: var(--lime); text-decoration: none; }
+    .history-footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      .town-body { padding: 20px; }
+      .intro { padding: 22px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <div class="logo"><i class="fas fa-mountain"></i> MineLink</div>
+    <a href="index.html" class="btn btn-lime"><i class="fas fa-arrow-left"></i> Back to Marketplace</a>
+  </div>
+</div>
+
+<header class="page-hero">
+  <div class="container">
+    <h1>Zimbabwe's <span>Mining History</span></h1>
+    <p>From the gold rushes of the 1890s to today's lithium boom, these towns built the backbone of Zimbabwe's mineral wealth. Explore their stories and view them on the map.</p>
+  </div>
+</header>
+
+<main class="container">
+  <div class="intro">
+    <p>Mining has shaped Zimbabwe for well over a century. The country's Archean greenstone belts are among the richest gold-bearing formations in the world, and towns such as <strong>Kadoma</strong>, <strong>Kwekwe</strong>, <strong>Zvishavane</strong> and <strong>Mazowe</strong> grew directly out of the rush to extract gold, chrome, asbestos and — more recently — lithium and platinum-group metals.</p>
+    <p>Today these towns remain active mining centres, home to both large-scale operations and a vibrant artisanal and small-scale mining (ASM) sector. Scroll down to read their histories and click any map to open it live.</p>
+  </div>
+
+  <!-- KADOMA -->
+  <article class="town">
+    <img class="town-img" src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=1200&q=80" alt="Mining landscape near Kadoma" loading="lazy" onerror="this.src='https://placehold.co/1200x400/d4e7f5/0a2e4e?text=Kadoma'">
+    <div class="town-body">
+      <h2><i class="fas fa-gem"></i> Kadoma</h2>
+      <span class="town-tag">Gold · Arsenic · Industrial</span>
+      <p>Kadoma (formerly Gatooma) lies about 140 km southwest of Harare in Mashonaland West. It was founded in 1907 as a gold-mining settlement and became one of the most productive gold districts in colonial Southern Rhodesia. The nearby <strong>Cam & Motor Mine</strong> and the <strong>Patchway</strong> and <strong>Golden Valley</strong> workings supported thousands of miners.</p>
+      <p>Kadoma is also historically associated with the cotton and textile industry, but mining remained the economic anchor. Today the district hosts numerous small-scale gold operations and the town is a hub for ASM buyers and equipment suppliers.</p>
+      <iframe class="town-map" title="Map of Kadoma" loading="lazy"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=29.80%2C-18.40%2C29.98%2C-18.28&layer=mapnik&marker=-18.3333%2C29.9167"></iframe>
+    </div>
+  </article>
+
+  <!-- KWEKWE -->
+  <article class="town">
+    <img class="town-img" src="https://images.unsplash.com/photo-1523848309072-c199db53f137?w=1200&q=80" alt="Mine infrastructure near Kwekwe" loading="lazy" onerror="this.src='https://placehold.co/1200x400/d4e7f5/0a2e4e?text=Kwekwe'">
+    <div class="town-body">
+      <h2><i class="fas fa-gem"></i> Kwekwe</h2>
+      <span class="town-tag">Gold · Chrome · Iron &amp; Steel</span>
+      <p>Kwekwe sits in the heart of the Midlands, roughly midway between Harare and Bulawayo. Named after the Kwekwe River, the town grew around the <strong>Globe &amp; Phoenix</strong> gold mine, one of the oldest and deepest gold mines in the country. The <strong>Gaika</strong> and <strong>Indarama</strong> mines also operated in the district.</p>
+      <p>Beyond gold, Kwekwe is a major chrome and iron-ore centre. The <strong>Zimbabwe Iron and Steel Company (ZISCO)</strong> at nearby Redcliff made the town an industrial powerhouse for decades. Today Kwekwe remains a key mining and metallurgical hub — and it is the home base of MineLink.</p>
+      <iframe class="town-map" title="Map of Kwekwe" loading="lazy"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=29.75%2C-18.95%2C29.85%2C-18.88&layer=mapnik&marker=-18.9167%2C29.8000"></iframe>
+    </div>
+  </article>
+
+  <!-- ZVISHAVANE -->
+  <article class="town">
+    <img class="town-img" src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=1200&q=80" alt="Open-pit mining landscape near Zvishavane" loading="lazy" onerror="this.src='https://placehold.co/1200x400/d4e7f5/0a2e4e?text=Zvishavane'">
+    <div class="town-body">
+      <h2><i class="fas fa-gem"></i> Zvishavane</h2>
+      <span class="town-tag">Asbestos · Gold · Lithium</span>
+      <p>Zvishavane (formerly Shabani) is in the Midlands province, south of Gweru. It rose to prominence through the <strong>Shabani and Mashaba asbestos mines</strong>, which for much of the 20th century made Zimbabwe one of the world's leading asbestos producers. The town's economy was tightly bound to the mining house Shabanie-Mashaba Mines (SMM).</p>
+      <p>More recently, Zvishavane has become a focal point of Zimbabwe's <strong>lithium boom</strong>, with several large-scale lithium concentrators and open-pit operations opening in the district since 2022. Gold and platinum-group exploration also continue nearby.</p>
+      <iframe class="town-map" title="Map of Zvishavane" loading="lazy"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=30.00%2C-20.38%2C30.12%2C-20.28&layer=mapnik&marker=-20.3333%2C30.0667"></iframe>
+    </div>
+  </article>
+
+  <!-- MAZOWE -->
+  <article class="town">
+    <img class="town-img" src="https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?w=1200&q=80" alt="Historic mine workings near Mazowe" loading="lazy" onerror="this.src='https://placehold.co/1200x400/d4e7f5/0a2e4e?text=Mazowe'">
+    <div class="town-body">
+      <h2><i class="fas fa-gem"></i> Mazowe</h2>
+      <span class="town-tag">Gold · Historic</span>
+      <p>Mazowe lies about 50 km north of Harare in Mashonaland Central. It is one of the oldest mining districts in Zimbabwe — the <strong>Mazowe gold mine</strong> was pegged in the 1890s and has operated almost continuously since. The district's greenstone belts have produced millions of ounces of gold over more than a century.</p>
+      <p>The area is also known for the <strong>Mazowe Dam</strong> and its citrus estates, but gold remains central to the local economy. Thousands of artisanal miners work the surrounding claims, feeding ore to local mills.</p>
+      <iframe class="town-map" title="Map of Mazowe" loading="lazy"
+        src="https://www.openstreetmap.org/export/embed.html?bbox=30.92%2C-17.60%2C31.05%2C-17.48&layer=mapnik&marker=-17.5333%2C30.9833"></iframe>
+    </div>
+  </article>
+
+  <!-- OTHER DISTRICTS -->
+  <article class="town">
+    <div class="town-body">
+      <h2><i class="fas fa-gem"></i> Other notable districts</h2>
+      <span class="town-tag">Shurugwi · Bindura · Mutare</span>
+      <p><strong>Shurugwi</strong> (formerly Selukwe) is famous for chrome and the old Selukwe Peak mine. <strong>Bindura</strong>, north of Harare, hosts the Trojan nickel mine and is a major nickel and gold centre. <strong>Mutare</strong> and the Penhalonga valley in Manicaland were historic gold fields, and the area continues to produce gold and diamonds.</p>
+      <p>These districts, together with Kadoma, Kwekwe, Zvishavane and Mazowe, form the historic spine of Zimbabwean mining — and they remain active today.</p>
+    </div>
+  </article>
+
+  <div style="text-align:center;margin:20px 0 10px;">
+    <a href="index.html" class="btn btn-lime"><i class="fas fa-search"></i> Browse mining properties on MineLink</a>
+  </div>
+</main>
+
+<footer class="history-footer">
+  <div class="container">
+    <p><strong>MineLink</strong> · Kwekwe, Zimbabwe · <a href="tel:+2639083476">+263 908 3476</a></p>
+    <p>&copy; <span id="year"></span> MineLink. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
